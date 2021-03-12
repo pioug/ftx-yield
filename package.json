@@ -1,0 +1,22 @@
+{
+  "name": "ftx-lending",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "ccxt": "1.42.97"
+  },
+  "devDependencies": {
+    "eslint": "7.21.0",
+    "prettier": "2.2.1"
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended"
+    ],
+    "env": {
+      "es2020": true,
+      "node": true
+    }
+  }
+}
