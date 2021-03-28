@@ -5,7 +5,7 @@ on:
     - cron: '*/30 * * * *'
 
 jobs:
-  sync:
+  compound:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -13,9 +13,9 @@ jobs:
         with:
           path: ~/.npm
           key: ${{ runner.OS }}-${{ hashFiles('**/package-lock.json') }}
-      - run: |
-          npm ci
-          npm start
+      - run: set -e
+      - run: npm ci
+      - run: npm start
         env:
           FTX_API_KEY: ${{ secrets.FTX_API_KEY }}
           FTX_SECRET: ${{ secrets.FTX_SECRET }}
