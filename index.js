@@ -20,4 +20,8 @@ ftx
         });
       });
     return Promise.all(updatingOffers);
+  })
+  .catch(function (error) {
+    console.error(error);
+    process.exitCode = 1;
   });
