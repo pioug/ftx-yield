@@ -11,6 +11,7 @@ ftx
   .privateGetSpotMarginLendingInfo()
   .then(function ({ result }) {
     const updatingOffers = result
+      .filter(({ lendable }) => lendable)
       .map(function ({ coin, lendable }) {
         return ftx.privatePostSpotMarginOffers({
           coin,
