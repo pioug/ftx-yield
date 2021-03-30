@@ -13,9 +13,10 @@ ftx
     const updatingOffers = result
       .filter(({ lendable }) => lendable)
       .map(function ({ coin, lendable }) {
+        const PRECISION = 1_000_000;
         return ftx.privatePostSpotMarginOffers({
           coin,
-          size: lendable,
+          size: Math.floor(lendable * PRECISION) / PRECISION,
           rate: 1e-6,
         });
       });

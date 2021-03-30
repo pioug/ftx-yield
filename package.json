@@ -14,6 +14,9 @@
     "extends": [
       "eslint:recommended"
     ],
+    "parserOptions": {
+      "ecmaVersion": 2021
+    },
     "env": {
       "es2020": true,
       "node": true
