@@ -19,3 +19,4 @@ jobs:
         env:
           FTX_API_KEY: ${{ secrets.FTX_API_KEY }}
           FTX_SECRET: ${{ secrets.FTX_SECRET }}
+          FTX_LENDABLE_COINS: ${{ secrets.FTX_LENDABLE_COINS }}

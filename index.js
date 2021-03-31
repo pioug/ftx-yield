@@ -7,11 +7,13 @@ const ftx = new cctx.ftx({
   secret: process.env.FTX_SECRET,
 });
 
+const lendableCoins = process.env.FTX_LENDABLE_COINS ?? '';
+
 ftx
   .privateGetSpotMarginLendingInfo()
   .then(function ({ result }) {
     const updatingOffers = result
-      .filter(({ lendable }) => lendable)
+      .filter(({ coin }) => lendableCoins.includes(coin))
       .map(function ({ coin, lendable }) {
         const PRECISION = 1_000_000;
         return ftx.privatePostSpotMarginOffers({
