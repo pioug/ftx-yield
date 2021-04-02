@@ -4,10 +4,10 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "ccxt": "1.42.97"
+    "ccxt": "1.45.92"
   },
   "devDependencies": {
-    "eslint": "7.21.0",
+    "eslint": "7.23.0",
     "prettier": "2.2.1"
   },
   "eslintConfig": {
