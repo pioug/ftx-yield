@@ -7,6 +7,12 @@ const ftx = new cctx.ftx({
   secret: process.env.FTX_SECRET,
 });
 
+if (process.env.PROXY) {
+  ftx.proxy = function (url) {
+    return url.replace("https://ftx.com", process.env.PROXY);
+  };
+}
+
 const lendableCoins = process.env.FTX_LENDABLE_COINS ?? "";
 
 ftx
@@ -29,23 +35,25 @@ ftx
     process.exitCode = 1;
   });
 
-const stakableTokens = process.env.FTX_STAKABLE_TOKENS ?? "";
+if (process.env.PROXY) {
+  const stakableTokens = process.env.FTX_STAKABLE_TOKENS ?? "";
 
-ftx
-  .privateGetWalletBalances()
-  .then(function ({ result }) {
-    const stakingRequests = result
-      .filter(({ coin }) => stakableTokens.includes(coin))
-      .filter(({ free }) => +free)
-      .map(function ({ coin, free }) {
-        return ftx.privatePostSrmStakesStakes({
-          coin,
-          size: free,
+  ftx
+    .privateGetWalletBalances()
+    .then(function ({ result }) {
+      const stakingRequests = result
+        .filter(({ coin }) => stakableTokens.includes(coin))
+        .filter(({ free }) => +free)
+        .map(function ({ coin, free }) {
+          return ftx.privatePostSrmStakesStakes({
+            coin,
+            size: free,
+          });
         });
-      });
-    return Promise.all(stakingRequests);
-  })
-  .catch(function (error) {
-    console.error(error);
-    process.exitCode = 1;
-  });
+      return Promise.all(stakingRequests);
+    })
+    .catch(function (error) {
+      console.error(error);
+      process.exitCode = 1;
+    });
+}

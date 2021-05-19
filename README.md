@@ -23,3 +23,9 @@ Define the following [_secrets_](https://docs.github.com/en/actions/reference/en
 
   - Example: `RAY SOL`
   - Caveat: [Simple string search](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes) is used
+  - Note: Require a proxy since GitHub Actions servers are located in the US
+
+- `PROXY`
+
+  - Example: `https://my.proxy.com`
+  - See [`/proxy`](https://github.com/pioug/ftx-yield/tree/main/proxy) for an example of proxy server
