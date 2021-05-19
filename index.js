@@ -7,7 +7,7 @@ const ftx = new cctx.ftx({
   secret: process.env.FTX_SECRET,
 });
 
-const lendableCoins = process.env.FTX_LENDABLE_COINS ?? '';
+const lendableCoins = process.env.FTX_LENDABLE_COINS ?? "";
 
 ftx
   .privateGetSpotMarginLendingInfo()
