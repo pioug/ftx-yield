@@ -14,3 +14,4 @@ jobs:
           FTX_API_KEY: ${{ secrets.FTX_API_KEY }}
           FTX_SECRET: ${{ secrets.FTX_SECRET }}
           FTX_LENDABLE_COINS: ${{ secrets.FTX_LENDABLE_COINS }}
+          FTX_STAKABLE_TOKENS: ${{ secrets.FTX_STAKABLE_TOKENS }}

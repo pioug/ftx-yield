@@ -28,3 +28,24 @@ ftx
     console.error(error);
     process.exitCode = 1;
   });
+
+const stakableTokens = process.env.FTX_STAKABLE_TOKENS ?? "";
+
+ftx
+  .privateGetWalletBalances()
+  .then(function ({ result }) {
+    const stakingRequests = result
+      .filter(({ coin }) => stakableTokens.includes(coin))
+      .filter(({ free }) => +free)
+      .map(function ({ coin, free }) {
+        return ftx.privatePostSrmStakesStakes({
+          coin,
+          size: free,
+        });
+      });
+    return Promise.all(stakingRequests);
+  })
+  .catch(function (error) {
+    console.error(error);
+    process.exitCode = 1;
+  });
